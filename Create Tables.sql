@@ -1,0 +1,28 @@
+USE RacingGame;
+
+CREATE TABLE Player (
+    PlayerID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    PasswordHash VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Round (
+    RoundID INT AUTO_INCREMENT PRIMARY KEY,
+    WinnerID INT,
+    FOREIGN KEY (WinnerID) REFERENCES Player(PlayerID)
+);
+
+CREATE TABLE Cars (
+    CarID INT AUTO_INCREMENT PRIMARY KEY,
+    CarName VARCHAR(100) NOT NULL,
+    Description TEXT,
+    CarType VARCHAR(50)
+);
+
+CREATE TABLE Inventory (
+	PlayerID INT,
+    CarID INT,
+    FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID),
+    FOREIGN KEY (CarID) REFERENCES Cars(CarID)
+);
